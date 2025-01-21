@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {NavController, ToastController} from '@ionic/angular';
 
@@ -11,32 +12,28 @@ export class RegisterPage implements OnInit {
   email:string;
   password:string;
   name:string;
+  confirmPassword:string;
+  phone:string;
   constructor(
         private navController: NavController,
-        private ToastController: ToastController,
   ) { 
     this.password='';
     this.email='';
     this.name='';
+    this.confirmPassword='';
+    this.phone='';
   }
 
   ngOnInit() {
   }
-  onClickRegister() {
-    if(this.email !='' 
-      && this.password != '' 
-      && this.name != ''){
-        console.log('register');
-        this.navController.navigateRoot('/login');
-      }else {
-        this.presentToast('bottom');
-      }
-  } 
-  async presentToast(position: 'bottom') {
-    const toast = await this.ToastController.create({
-      message: 'Complete los campos',
-      duration: 3000,
-      position: 'bottom',
-    });
-}
+  register(form:NgForm) {
+    console.log(form.value);
+    console.log(form.valid);
+    console.log(form.invalid);
+    if (form.valid){
+      this.navController.navigateBack('/login');
+    }
+  }
+
+
 }
