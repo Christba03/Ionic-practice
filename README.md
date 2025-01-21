@@ -1,2 +1,0 @@
-# Ionic-practice
-practica ionic
